@@ -37,10 +37,10 @@ def drivePublish():
     file_name = file_path.split('/')[-1]
     # file parms
     para = {
-        "name": file_name,  # Имя файла на Google Drive
+        "name": file_name,
     }
 
-    # Открываем файл
+    # open file
     files = {
         "data": ("metadata", json.dumps(para), "application/json; charset=UTF-8"),
         "file": open(file_path, "rb"),
