@@ -27,7 +27,7 @@ def set_path():
 
 
 def drivePublish():
-    token = "ya29.a0AeDClZCvQtGMJO3XSjcO3_HG2X2fUggoE4cG6Csp0VnyparFWAACSyjeYRMkEm4luLrXSjV-PtdJ7mC7SbDanXAYVL9d-CzkO_Qf8ZEvfVQGBwSoSPINOCn_SRfoHwYxQWTuFsYdDZB4jFLQdNjjZwyLhx3eL5Yz1cidb20NaCgYKATQSARASFQHGX2MiQm7Ucoz2Q5eFWOUh5OAJdA0175"
+    token = "Your token"
     # auth token
     headers = {
         "Authorization": f"Bearer {token}"
