@@ -2,6 +2,8 @@ import os
 import sys
 import json
 import requests
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 def set_path():
@@ -27,10 +29,28 @@ def set_path():
 
 
 def drivePublish():
-    token = "Your token"
+    SCOPES = ['https://www.googleapis.com/auth/drive.file']
+
+    # get token
+    flow = InstalledAppFlow.from_client_secrets_file(
+        r'Your path to json credentials file',  # json credentials
+        SCOPES
+    )
+    creds = flow.run_local_server(port=0)
+
+    # save token
+    with open('token.json', 'w') as token_file:
+        token_file.write(creds.to_json())
+
+    json_token_file = os.path.abspath('token.json')
+    print(f"json token file path: {json_token_file}")
+
+    # load token
+    creds = Credentials.from_authorized_user_file('token.json')
+
     # auth token
     headers = {
-        "Authorization": f"Bearer {token}"
+        "Authorization": f"Bearer {creds.token}"
     }
 
     file_path = hou.pwd().parm('file').evalAsString()
@@ -55,5 +75,4 @@ def drivePublish():
 
     print(r.status_code)
     print(r.text)
-
 
